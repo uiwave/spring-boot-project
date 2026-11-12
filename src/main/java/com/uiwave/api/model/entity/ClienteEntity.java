@@ -15,16 +15,18 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "products")
-public class ProductEntity {
+@Table(name = "clientes")
+public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private CategoryEntity category;
+    @JoinColumn(name = "tipo_documento_id")
+    private TiposDocumentoEntity tipoDocumento;
+
+    @Column(name = "numero_documento", nullable = false, unique = true)
+    private String numeroDocumento;
+
+    private String nombre;
 }
